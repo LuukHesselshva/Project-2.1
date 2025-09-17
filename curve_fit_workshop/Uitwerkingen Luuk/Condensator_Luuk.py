@@ -9,7 +9,9 @@ def Spanning(t,V0,tau):
 def ms2s(t):
     return t/1000
 
-os.chdir("C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\curve_fit_ws")
+#os.chdir("C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\curve_fit_ws") #juiste locatie instellen
+os.chdir("C:\\Users\\luukj\\Documents\\GitHub\\Project-2.1\\curve_fit_workshop")
+
 df = pd.read_csv('Condensator.csv')
 
 t_ms = np.array(df['tijd (ms)'])
