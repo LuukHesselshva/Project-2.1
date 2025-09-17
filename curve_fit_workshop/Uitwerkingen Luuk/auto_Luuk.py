@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 import scipy.optimize as opt
 import os
 
-os.chdir("C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\curve_fit_ws")
-
+#os.chdir("C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\curve_fit_ws") #juiste locatie instellen
+os.chdir("C:\\Users\\luukj\\Documents\\GitHub\\Project-2.1\\curve_fit_workshop")
+         
 def PosAuto(t,x0,v):
     return x0 + v*t
 
