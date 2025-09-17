@@ -6,15 +6,18 @@ import os
 
 def Spanning(t,V0,tau):
     return V0*(1-np.exp(-t/tau))
+def ms2s(t):
+    return t/1000
 
 os.chdir("C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\curve_fit_ws")
 df = pd.read_csv('Condensator.csv')
 
-t = np.array(df['tijd (ms)'])
+t_ms = np.array(df['tijd (ms)'])
 V = np.array(df['spanning (V)'])
+t = ms2s(t_ms)
 
 popt,pcov = opt.curve_fit(Spanning,t,V)
-tau,V0 = popt
+V0,tau = popt
 span = Spanning(t,V0,tau)
 
 plt.scatter(t,V,color='blue')
