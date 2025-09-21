@@ -28,7 +28,7 @@ L = 158.8e-2
 theta_data = theta_patroon(a,L)
 golf_lengte = lambda_out(d,theta_data,n)
 print('golf lengte: ',golf_lengte)
-print('gemiddelde', np.mean(golf_lengte))
+print('gemiddelde:', np.mean(golf_lengte), '±', (golf_lengte[0]-np.mean(golf_lengte)))
 
 # grafiek
 plt.figure(0)
