@@ -15,6 +15,7 @@ def theta_patroon(a,L):
 
 # variables vast
 d = (1/600)/1000
+n_waarde_lucht =  1.0002926
 n = np.array([1,2])
 lambda_1 = 490e-9
 lambda_2 = 575e-9
@@ -27,8 +28,10 @@ a = np.array([54.1e-2,129.4e-2])
 L = 158.8e-2
 theta_data = theta_patroon(a,L)
 golf_lengte = lambda_out(d,theta_data,n)
+absolute_fout = golf_lengte[0]-np.mean(golf_lengte)
 print('golf lengte: ',golf_lengte)
-print('gemiddelde:', np.mean(golf_lengte), '±', (golf_lengte[0]-np.mean(golf_lengte)))
+print('gemiddelde:', np.mean(golf_lengte), '±', absolute_fout)
+print('golflengte in vacuüm:', np.mean(golf_lengte)*n_waarde_lucht, '±', absolute_fout*n_waarde_lucht)
 
 # grafiek
 plt.figure(0)
