@@ -6,7 +6,7 @@ import os
 
 os.chdir('C:\\Users\\Win11 Pro\\Desktop\\oscilloscope rigol\\metingen')
 
-line_value = 3
+line_value = 300
 
 df = pd.read_csv('Waveform.csv')
 S = np.array(df['Sequence'])
