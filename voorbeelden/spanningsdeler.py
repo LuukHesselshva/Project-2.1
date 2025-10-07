@@ -8,7 +8,7 @@ V_out = 3
 def calculate_R1(R2, V_in, V_out):
     return(V_in*R2/V_out)-R2
 
-R2 = np.linspace(1, 1000, 1000)
+R2 = np.linspace(1, 10, 100)
 R1 = calculate_R1(R2, V_in, V_out)
 
 plt.figure(0)
@@ -17,5 +17,7 @@ plt.xlabel('R2 (Kilo Ohm)')
 plt.ylabel('R1 (Kilo Ohm)')
 plt.title('R1 als functie van R2 voor een spanningsdeler')
 plt.grid()
+plt.figtext(0.15, 0.83, f'V in = {V_in}',size=9)
+plt.figtext(0.15, 0.77, f'V out = {V_out}',size=9)
 
 plt.show()
