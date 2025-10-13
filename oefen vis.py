@@ -4,13 +4,14 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 import os 
 
-os.chdir('C:\\Users\\Win11 Pro\\Desktop\\oscilloscope rigol\\metingen')
+os.chdir('C:\\Users\\Win11 Pro\\Documents\]Project-2.1\\metingen')
 
 line_value = 300
 
-df = pd.read_csv('Waveform.csv')
-S = np.array(df['Sequence'])
-V = np.array(df['VOLT'])
+df = pd.read_csv('test.csv')
+#S = np.array(df['Sequence'])
+#V = np.array(df['VOLT'])
+print(df)
 
 # Zoek pieken
 peaks, _ = find_peaks(V)
