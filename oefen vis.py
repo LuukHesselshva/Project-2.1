@@ -4,28 +4,27 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 import os 
 
-os.chdir('C:\\Users\\Win11 Pro\\Documents\]Project-2.1\\metingen')
+os.chdir('C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\metingen')
 
 line_value = 300
 
-df = pd.read_csv('test.csv')
-#S = np.array(df['Sequence'])
-#V = np.array(df['VOLT'])
+df = pd.read_csv('fietsventieldopje.csv')
+df['X'] = pd.to_numeric(df['X'], errors='coerce')
+df['CH1'] = pd.to_numeric(df['CH1'], errors='coerce')
+X = np.array(df['X'])
+C = np.array(df['CH1'])
+S = np.delete(X,0)
+V = np.delete(C,0)
+
 print(df)
 
-# Zoek pieken
-peaks, _ = find_peaks(V)
-
-# Filter pieken die boven de lijn zitten
-peaks_above = peaks[V[peaks] > line_value]
-
-print("Aantal pieken boven de lijn:", len(peaks_above))
-
-# Plot
-line = np.full_like(S, line_value)
-plt.plot(S, V)
-plt.plot(S, line, label="drempel")
-plt.plot(S[peaks_above], V[peaks_above], "ro", label="Pieken boven drempel")
-plt.legend()
-plt.grid()
+plt.figure(figsize=(10,6))
+plt.plot(S, V, lw=2)
+plt.xlabel('X waarde', fontsize=14)
+plt.ylabel('CH1 waarde', fontsize=14)
+plt.title('Fietsventieldopje Meting', fontsize=16)
+plt.grid(True, which='both', linestyle='--', linewidth=0.7)
+plt.tick_params(axis='both', which='major', labelsize=12, width=2)
+plt.xlim(200,400)
+plt.tight_layout()
 plt.show()

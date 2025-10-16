@@ -1,22 +1,32 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.signal import find_peaks
-import os 
+import os
 
 os.chdir('C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\metingen')
 
-line_value = 300
+# Lees CSV met flexibele kolommen
+df = pd.read_csv(
+    'fietsventieldopje.csv',
+    skiprows=2,
+    delimiter=',',
+    names=['X', 'CH1', 'dummy1', 'dummy2'],
+    engine='python'
+)
 
-df = pd.read_csv('test3.csv')
-df2 = pd.read_csv('test2.csv')
+# Gebruik alleen X en CH1
+df['X'] = pd.to_numeric(df['X'], errors='coerce')
+df['CH1'] = pd.to_numeric(df['CH1'], errors='coerce')
+df = df.dropna(subset=['X', 'CH1'])
 
-y = np.array(df['raw'])
-x = np.linspace(0, len(y)-1, len(y))
+print(df.head())  # Controleer of er data is
 
-y1 = np.array(df2['raw'])
-x1 = np.linspace(0, len(y1)-1, len(y1))
-
-plt.plot(x, y)
-plt.plot(x1, y1)
+plt.figure(figsize=(12, 6))
+plt.plot(df['X'], df['CH1'], lw=2, color='royalblue')
+plt.xlabel('Tijd / Sequence', fontsize=14)
+plt.ylabel('Spanning (V)', fontsize=14)
+plt.title('Oscilloscoopdata Fietsventieldopje', fontsize=16)
+plt.grid(True, linestyle='--', linewidth=0.7)
+#plt.tight_layout()
+#plt.xlim(200,400)
 plt.show()
