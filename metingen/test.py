@@ -7,7 +7,7 @@ os.chdir('C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\metingen')
 
 # Lees CSV met flexibele kolommen
 df = pd.read_csv(
-    'fietsventieldopje.csv',
+    'eindelijk.csv',
     skiprows=2,
     delimiter=',',
     names=['X', 'CH1', 'dummy1', 'dummy2'],
