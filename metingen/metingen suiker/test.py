@@ -21,7 +21,7 @@ f_sacharose = 1.77e-3
 V_totaal = 3
 
 win_size = 3 
-prom = 0.24
+prom = 0.23
 
 # Zet op True om piekplots te tonen
 check = True
@@ -150,40 +150,18 @@ def fit_multidata(hoek_graden, N, naam='', check=False):
     # Fit uitvoeren
     popt, pcov = curve_fit(model_shifted, hoek_graden, N, p0=[1.33])
     n_fit = popt[0]
-
-    # Optionele check-plot
-    if check:
-        model_ref = model_shifted(hoek_graden, 1.33)
-        model_fit = model_shifted(hoek_graden, n_fit)
-
-        plt.figure(figsize=(6, 4))
-        plt.scatter(hoek_graden, N, color='red', label='Gemeten N')
-        plt.plot(hoek_graden, model_ref, color='blue', label='Model N (n=1.33)')
-        plt.plot(hoek_graden, model_fit, color='green', linestyle='--',
-                 label=f'Fit (n={n_fit:.4f})')
-        plt.xlabel("Hoek (°)")
-        plt.ylabel("N (relatief fringe getal)")
-        plt.title(f"Controle fit voor {naam}")
-        plt.legend()
-        plt.grid(True)
-        plt.tight_layout()
-        #plt.show()
-
     return popt
-
-
-
 
 def plot_datagraphs(naam, x, y, n_line, n_fit):
     plt.figure(naam)
     plt.scatter(x, y, label='Measured Data', color='red')
     plt.plot(theta_fit, n_line, label=f'Fitted Curve (n={n_fit[0]:.2f})', color='blue')
-    plt.plot(theta_fit, N_fit_suiker(theta_fit, 1.35), label='n = 1.35', color='orange')
+    plt.plot(theta_fit, N_fit_suiker(theta_fit, 1.33), label='n = 1.33', color='orange')
     plt.xlabel('Theta (degrees)')
     plt.ylabel('N')
     plt.title('Refractive Index Fit')
     plt.xlim(0, 12)
-    plt.ylim(0, 200)
+    plt.ylim(0, 250)
     plt.legend()
     plt.grid()
 
@@ -220,17 +198,17 @@ x_ranges_075ml = {
     '0.75ml_8g10g': (133, 853)
 }
 x_ranges_1ml = {
-    '1ml_0g2g': (120, 809),
+    '1ml_0g2g': (197, 777),
     '1ml_2g4g': (115, 823),
     '1ml_4g6g': (95, 1104),
-    '1ml_6g8g': (65, 1124),
-    '1ml_8g10g': (148, 1107)
+    '1ml_6g8g': (223, 1088),
+    '1ml_8g10g': (148, 1010)
 }
 x_ranges_blanco = {
     'blanco_0g2g': (1, 679),
     'blanco_2g4g': (529, 1350),
     'blanco_4g6g': (186, 1406),
-    'blanco_6g8g': (125, 1391),
+    'blanco_6g8g': (370, 1391),
     'blanco_8g10g': (6, 1229)
 }
 
@@ -282,9 +260,10 @@ n = np.array([float(fit_blanco[0]), float(fit_025ml[0]), float(fit_05ml[0]),
               float(fit_075ml[0]), float(fit_1ml[0])])
 
 #
-C_cor = np.delete(C_cor,-1)
-n = np.delete(n,-1)
-n_theorie = np.delete(n_theorie,-1)
+#C_cor = np.delete(C_cor,-1)
+#n = np.delete(n,-1)
+#n_theorie = np.delete(n_theorie,-1)
+
 # Lineaire fit over alle data
 popt, pcov = curve_fit(lin, C_cor, n)
 slope, intercept = popt
@@ -316,3 +295,5 @@ print('n',n)
 print('n_theorie',n_theorie)
 
 plt.show()
+
+print(fringes_025ml)
