@@ -22,7 +22,7 @@ df68 = read('0.5ml_6g8g')
 df810 = read('0.5ml_8g10g')
 
 # Rolling average parameters
-window_size = 15
+window_size = 10
 
 # Rolling averages toevoegen
 df02['rolling'] = df02['CH1'].rolling(window=window_size, center=True).mean()
