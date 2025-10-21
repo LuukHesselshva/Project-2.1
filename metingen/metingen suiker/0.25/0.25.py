@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-os.chdir('C:\\Users\\luukj\\Documents\\GitHub\\Project-2.1\\metingen\\metingen suiker\\0.5')
+os.chdir('C:\\Users\\luukj\\Documents\\GitHub\\Project-2.1\\metingen\\metingen suiker\\0.25')
 
 def read(name):
     df = pd.read_csv(
@@ -15,11 +15,11 @@ def read(name):
     )
     return df
 
-df02 = read('0.5ml_0g2g')
-df24 = read('0.5ml_2g4g')
-df46 = read('0.5ml_4g6g')
-df68 = read('0.5ml_6g8g')
-df810 = read('0.5ml_8g10g')
+df02 = read('0.25ml_0g2g')
+df24 = read('0.25ml_2g4g')
+df46 = read('0.25ml_4g6g')
+df68 = read('0.25ml_6g8g')
+df810 = read('0.25ml_8g10g')
 
 # Rolling average parameters
 window_size = 10
@@ -30,22 +30,6 @@ df24['rolling'] = df24['CH1'].rolling(window=window_size, center=True).mean()
 df46['rolling'] = df46['CH1'].rolling(window=window_size, center=True).mean()
 df68['rolling'] = df68['CH1'].rolling(window=window_size, center=True).mean()
 df810['rolling'] = df810['CH1'].rolling(window=window_size, center=True).mean()
-
-#plt.figure(0)
-#plt.plot(df02['X'],df02['CH1'])
-#plt.title('0 -> 2')
-#plt.figure(1)
-#plt.plot(df24['X'],df24['CH1'])
-#plt.title('2 -> 4')
-#plt.figure(2)
-#plt.plot(df46['X'],df46['CH1'])
-#plt.title('4 -> 6')
-#plt.figure(3)
-#plt.plot(df68['X'],df68['CH1'])
-#plt.title('6 -> 8')
-#plt.figure(4)
-#plt.plot(df810['X'],df810['CH1'])
-#plt.title('8 -> 10')
 
 # Plotten
 plt.figure(0)
