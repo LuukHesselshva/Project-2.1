@@ -24,7 +24,7 @@ win_size = 3
 prom = 0.23
 
 # Zet op True om piekplots te tonen
-check = True
+check = False
 
 # -------------------------------
 # Functies
@@ -184,14 +184,14 @@ x_ranges_025ml = {
     '0.25ml_8g10g': (25, 1040)
 }
 x_ranges_05ml = {
-    '0.5ml_0g2g': (0.2, 1075),
+    '0.5ml_0g2g': (328, 1075),
     '0.5ml_2g4g': (245, 925),
     '0.5ml_4g6g': (338, 1048),
     '0.5ml_6g8g': (141, 832),
     '0.5ml_8g10g': (25, 940)
 }
 x_ranges_075ml = {
-    '0.75ml_0g2g': (124, 825),
+    '0.75ml_0g2g': (360, 825),
     '0.75ml_2g4g': (130, 790),
     '0.75ml_4g6g': (265, 1124),
     '0.75ml_6g8g': (297, 1015),
@@ -202,18 +202,18 @@ x_ranges_1ml = {
     '1ml_2g4g': (115, 823),
     '1ml_4g6g': (95, 1104),
     '1ml_6g8g': (223, 1088),
-    '1ml_8g10g': (148, 1010)
+    '1ml_8g10g': (148, 1101)
 }
 x_ranges_blanco = {
-    'blanco_0g2g': (1, 679),
+    'blanco_0g2g': (109, 679),
     'blanco_2g4g': (529, 1350),
     'blanco_4g6g': (186, 1406),
-    'blanco_6g8g': (370, 1391),
+    'blanco_6g8g': (307, 1391),
     'blanco_8g10g': (6, 1229)
 }
 
 fringes_025ml = fringes(
-    '0.25ml', win_size, prom,
+    '0.25ml', (win_size+1), prom,
     subdir='0.25', show_plots=True,
     x_ranges=x_ranges_025ml
 )
@@ -228,12 +228,12 @@ fringes_075ml = fringes(
     x_ranges=x_ranges_075ml
 )
 fringes_1ml = fringes(
-    '1ml', win_size, prom,
+    '1ml', (win_size+1), prom,
     subdir='1', show_plots=True,
     x_ranges=x_ranges_1ml
 )
 fringes_blanco = fringes(
-    'blanco', win_size, prom,
+    'blanco', (win_size+1), prom,
     subdir='blanco', show_plots=True,
     x_ranges=x_ranges_blanco
 )
@@ -276,10 +276,11 @@ plt.scatter(C_cor, n, label='data', color='blue')
 plt.plot(C_cor, trend, label=f'y = {round(slope,4)}x + {round(intercept,4)}', color='red', linestyle='--')
 plt.plot(C_cor, n_theorie, label='waarde theoretisch', color='orange')
 plt.plot(C_cor, trend_alt, label='alternatieve lijn', color='purple', linestyle='--')
+
 plt.xlabel('m/v%')
 plt.ylabel('n')
 plt.legend()
-plt.title('Totaaldata refractieve index')
+plt.title('Totaaldata refractieve index sucharose water')
 plt.grid()
 
 # Detailplots alleen als check=True
