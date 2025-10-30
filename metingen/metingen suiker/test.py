@@ -14,6 +14,7 @@ lambda_laser = 532e-9  # wavelength of the laser in meters
 d_sugar = 1e-2          # thickness in meters
 d_cuvett = 1.25e-2 - d_sugar  # thickness in meters
 n_cuvett = 1.59         # refractive index of the cuvett
+#n_cuvett = 2
 n_air = 1.0             # refractive index of air
 
 n_water_532 = 1.3382
@@ -280,7 +281,7 @@ plt.plot(C_cor, trend_alt, label='alternatieve lijn', color='purple', linestyle=
 plt.xlabel('m/v%')
 plt.ylabel('n')
 plt.legend()
-plt.title('Totaaldata refractieve index sucharose water')
+plt.title('Totaaldata refractieve index sacharose water')
 plt.grid()
 
 # Detailplots alleen als check=True
