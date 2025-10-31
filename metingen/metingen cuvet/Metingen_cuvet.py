@@ -6,7 +6,8 @@ from scipy.optimize import curve_fit
 from scipy.signal import find_peaks
 
 # Pad aanpassen aan jouw situatie
-main_path = 'C:\\Users\\luukj\\Documents\\GitHub\\Project-2.1\\metingen\\metingen cuvet'
+#main_path = 'C:\\Users\\luukj\\Documents\\GitHub\\Project-2.1\\metingen\\metingen cuvet'
+main_path = 'C:\\Users\\Win11 Pro\\Documents\\Project-2.1\\metingen\\metingen cuvet'
 os.chdir(main_path)
 
 # constants
@@ -15,8 +16,8 @@ d_cuvett = (1.25e-2 - 1e-2 )/2
 n_air = 1.0 
 thickness = d_cuvett
 
-win_size = 6 
-prom = 0.4
+win_size = 10 
+prom = 0.5
 
 # Zet op True om piekplots te tonen
 check = True
@@ -48,13 +49,13 @@ def fringes(naam, var_window_size, var_prominence, subdir, show_plots=False, x_r
         {'0.5ml_0g2g': (0.1, 0.8), '0.5ml_2g4g': (0.2, 1.0), ...}
     Alleen pieken BINNEN dat X-bereik worden geteld.
     """
-    naam_1 = f"{naam}_0g2g"
+    #naam_1 = f"{naam}_0g2g"
     naam_2 = f"{naam}_2g4g"
     naam_3 = f"{naam}_4g6g"
     naam_4 = f"{naam}_6g8g"
     naam_5 = f"{naam}_8g10g"
-    names = [naam_1, naam_2, naam_3, naam_4, naam_5]
-    #names = [naam_2, naam_3, naam_4, naam_5]
+    #names = [naam_1, naam_2, naam_3, naam_4, naam_5]
+    names = [naam_2, naam_3, naam_4, naam_5]
 
     dfs, peaks_list = [], []
 
@@ -149,8 +150,8 @@ def plot_datagraphs(naam, x, y, n_line, n_fit):
     plt.legend()
     plt.grid()
 
-theta_graden = np.array([0, 2 ,4, 6, 8, 10])
-#theta_graden = np.array([0, 4, 6, 8, 10])
+#theta_graden = np.array([0, 2 ,4, 6, 8, 10])
+theta_graden = np.array([0, 4, 6, 8, 10])
 theta_fit = np.linspace(0, 12, 100)
 
 # Zet show_plots=True bij de reeks die je wilt bekijken
@@ -234,8 +235,6 @@ fit_lijn_3 = N_fit(theta_fit, *fit_3)
 fit_lijn_4   = N_fit(theta_fit, *fit_4)
 fit_lijn_5 = N_fit(theta_fit, *fit_5)
 
-fit_1
-
 
 n = np.array([float(fit_1[0]), float(fit_2[0]), float(fit_3[0]),
               float(fit_4[0]), float(fit_5[0])])
@@ -259,6 +258,9 @@ if check:
     plot_datagraphs('4', theta_graden, fringes_4, fit_lijn_4, fit_4)
     plot_datagraphs('5', theta_graden, fringes_5, fit_lijn_5, fit_5)
 
-
+n_gem = np.mean(n)
+stdev = np.std(n)
+print('n gemiddeld: ', round(n_gem,2), '+/-', round(stdev,2))
+print('fout is: ', round(stdev/np.sqrt(len(n)),2))
 
 plt.show()
